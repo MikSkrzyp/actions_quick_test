@@ -1,0 +1,27 @@
+# .github/workflows/python-tests.yml
+name: Run Selenium Pytest on Chrome
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  selenium-pytest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install selenium pytest
+
+      - name: Run tests
+        run: pytest
